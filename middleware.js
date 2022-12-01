@@ -11,15 +11,9 @@ const delayActionMiddleware = (store) => (next) => (action) => {
     return next(action)
 }
 const fetchTodoMiddleware = (store) => (next) => async (action) => {
-    if (action.type === "todo/fetchTodo") {
-        const response = await fetch("https://jsonplaceholder.typicode.com/todos");
-        const data = await response.json();
-        store.dispatch({
-            type: "todo/todoLoaded",
-            payload: data
-        });
-        console.log(`number of todo in here ${store.getState().todo.length}`)
-        return
+    if (typeof action === "function") {
+
+     return  action(store.dispatch, store.getState)
     }
     return next(action)
 }

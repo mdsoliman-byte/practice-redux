@@ -1,4 +1,5 @@
 const { createStore, applyMiddleware } = require("redux");
+const { fetchTodo } = require("./function");
 const { delayActionMiddleware, fetchTodoMiddleware } = require("./middleware")
 
 // Initial State 
@@ -45,7 +46,8 @@ store.subscribe(() => {
 //     type: "todo/todoAdded",
 //     payload: "Hello I Want to add your todo item"
 // })
-store.dispatch({
-    type: "todo/fetchTodo",
+store.dispatch(fetchTodo)
+// store.dispatch({
+//     type: "todo/fetchTodo",
 
-})
+// })
